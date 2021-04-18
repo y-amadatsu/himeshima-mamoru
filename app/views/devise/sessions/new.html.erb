@@ -1,0 +1,65 @@
+<% content_for :title do %>
+  sign_in
+<% end %>
+
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <a href="/">姫島村コロナワクチン接種予約管理</a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">Sign in to start your session</p>
+
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="input-group mb-3">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email" %>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group mb-3">
+          <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: "Password" %>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <!-- TODO -->
+        <% if alert %>
+        <div class="row">
+          <div class="col-12">
+            <p class="alert"><%= alert %></p>
+          </div>
+          <!-- /.col -->
+        </div>
+        <% end %>
+        <div class="row">
+          <!-- TODO -->
+          <!--
+          <% if devise_mapping.rememberable? %>
+            <div class="col-8">
+              <div class="icheck-primary">
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me %>
+              </div>
+            </div>
+          <% end %>
+          -->
+          <div class="col-4">
+            <%= f.submit "Sign In", class: "btn btn-primary btn-block" %>
+          </div>
+          <!-- /.col -->
+        </div>
+      <% end %>
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->
+</body>

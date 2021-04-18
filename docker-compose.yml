@@ -1,0 +1,59 @@
+version: "3.8"
+
+x-default_environment: &rails_app_environment
+  RAILS_DB_USER: postgres
+  RAILS_DB_PASSWORD: password
+  RAILS_DB_HOST: db
+  WEBPACKER_DEV_SERVER_HOST: webpacker
+  BASIC_AUTH_USER_NAME: ${BASIC_AUTH_USER_NAME}
+  BASIC_AUTH_PASSWORD: ${BASIC_AUTH_PASSWORD}
+
+x-rails_app_volumes: &rails_app_volumes
+  - .:/app:cached
+  - packs:/app/public/packs
+  - node_modules:/app/node_modules
+
+services:
+  db:
+    image: postgres:13.1-alpine
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      PGTZ: Asia/Tokyo
+    ports:
+      - 5432:5432
+  web:
+    build:
+      context: .
+      target: dev
+    command: ash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      *rails_app_volumes
+    ports:
+      - 3001:3000
+    depends_on:
+      - db
+      - webpacker
+    environment:
+      <<: *rails_app_environment
+    tty: true
+    stdin_open: true
+
+  webpacker:
+    build:
+      context: .
+      target: dev
+    command: bin/webpack-dev-server
+    ports:
+      - 3035:3035
+    volumes:
+      *rails_app_volumes
+    environment:
+      <<: *rails_app_environment
+      WEBPACKER_DEV_SERVER_HOST: 0.0.0.0
+
+volumes:
+  packs:
+  node_modules:

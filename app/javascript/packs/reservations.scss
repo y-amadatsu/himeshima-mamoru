@@ -1,0 +1,5 @@
+.hourselect { 
+    option:nth-child(-n+9), option:nth-child(13), option:nth-child(n+18) {
+      display: none;
+    }
+}

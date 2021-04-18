@@ -1,0 +1,30 @@
+<% content_for :title do %>
+  予約インポート
+<% end %>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <%= form_tag reservations_imports_path, method: 'post', multipart: true, role: 'form' do %>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="upload_file">File input</label>
+              <div class="input-group">
+                <div class="custom-file">
+                  <%= file_field :file, :file, class: 'custom-file-input', id: 'upload_file' %>
+                  <label class="custom-file-label" for="upload_file">Choose file</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.card-body -->
+
+          <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Upload</button>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

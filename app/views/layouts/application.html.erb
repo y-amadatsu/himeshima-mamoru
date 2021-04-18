@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <% if content_for?(:title) %>
+    <title>予約管理 | <%= yield(:title) %></title>
+    <% else %>
+     <title>予約管理</title>
+    <% end %>
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_packs_with_chunks_tag 'application', media: 'all' %>
+    <%= javascript_packs_with_chunks_tag 'application' %>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  </head>
+
+  <body data-scrollbar-auto-hide="n" class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+      <%= render "base/header" %>
+      <%= render "base/sidebar" %>
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <div class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h1 class="m-0 text-dark"><%= yield(:title) %></h1>
+              </div><!-- /.col -->
+            </div><!-- /.row -->
+          </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <div class="content container-fluid">
+          <div class="container-fluid">
+            <% if notice %>
+            <div class="alert alert-info alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <h5><i class="icon fas fa-info"></i> Alert!</h5>
+              <%= notice %>
+            </div>
+            <% end %>
+            <% if alert %>
+            <div class="alert alert-warning alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <h5><i class="icon fas fa-exclamation-triangle"></i> Alert!</h5>
+              <%= alert %>
+            </div>
+            <% end %>
+
+            <%= yield %>
+          </div>
+        </div>
+        <!-- /.content -->
+      </div>
+      <!-- /.content-wrapper -->
+
+      <%= render "base/control_sidebar" %>
+      <%= render "base/footer" %>
+    </div>
+    <!-- ./wrapper -->
+  </body>
+</html>

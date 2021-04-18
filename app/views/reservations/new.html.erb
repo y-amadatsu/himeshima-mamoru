@@ -1,0 +1,16 @@
+<%= stylesheet_packs_with_chunks_tag 'reservations' %>
+<%= javascript_packs_with_chunks_tag 'reservations/_form' %>
+
+<% content_for :title do %>
+    予約登録
+<% end %>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+<%= render 'form', reservation: @reservation %>
+    </div>
+  </div>
+</div>
+
+<%= link_to 'Back', reservations_path %>

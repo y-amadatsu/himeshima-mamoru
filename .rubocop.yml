@@ -1,0 +1,48 @@
+inherit_from: .rubocop_todo.yml
+
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-performance
+AllCops:
+  Exclude:
+    - "db/**/*"
+    - "tmp/**/*"
+    - "vendor/**/*"
+    - "bin/**/*"
+    - "config/**/*"
+    - "config.ru"
+    - "node_modules/**/*"
+  NewCops: enable
+
+Rails:
+  Enabled: true
+
+Naming/AccessorMethodName:
+  Enabled: false
+
+Style/AsciiComments:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 15
+Metrics/AbcSize:
+  Max: 20
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
+RSpec/NestedGroups:
+  Enabled: false
+RSpec/RepeatedExampleGroupDescription:
+  Enabled: false
+RSpec/ContextWording:
+  Enabled: false
+RSpec/DescribedClass:
+  Enabled: false
+RSpec/MultipleExpectations:
+  Max: 3

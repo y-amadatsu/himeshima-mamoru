@@ -1,0 +1,80 @@
+<%= form_with(model: reservation) do |form| %>
+  <% if reservation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
+
+      <ul>
+        <% reservation.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="card-body">
+    <% if reservation.persisted? %>
+    <div class="form-group row">
+      <%= form.label :id, class: 'col-sm-2 col-form-label' %>
+      <div class="input-group col-sm-10">
+        <%= form.text_field :id, class: 'form-control', disabled: true %>
+      </div>
+    </div>
+    <% end %>
+    <div class="form-group row">
+      <%= form.label :reserved_at, class: 'col-sm-2 col-form-label' %>
+      <div class="input-group col-sm-10">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="far fa-calendar-alt"></i>
+          </span>
+        </div>
+        <%= form.text_field :reserved_at, class: 'form-control float-right', value: @reservation.reserved_at.try(:strftime, "%Y-%m-%d %H:%M") %>
+      </div>
+    </div>
+    <div class="form-group row">
+      <%= form.label :name, class: 'col-sm-2 col-form-label' %>
+      <div class="input-group col-sm-10">
+        <%= form.text_field :name, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group row">
+      <%= form.label :kana, class: 'col-sm-2 col-form-label' %>
+      <div class="input-group col-sm-10">
+        <%= form.text_field :kana, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group row">
+      <%= form.label :birthday_on, class: 'col-sm-2 col-form-label' %>
+      <div class="input-group col-sm-10">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="far fa-calendar-alt"></i>
+          </span>
+        </div>
+        <%= form.text_field :birthday_on, class: 'form-control float-right', value: @reservation.birthday_on.try(:strftime, "%Y-%m-%d") %>
+      </div>
+    </div>
+    <div class="form-group row">
+      <%= form.label :phone_number, class: 'col-sm-2 col-form-label' %>
+      <div class="input-group col-sm-10">
+        <div class="input-group-prepend">
+          <span class="input-group-text"><i class="fas fa-phone"></i></span>
+        </div>
+        <%= form.text_field :phone_number, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= form.label :proxy_input, class: 'col-sm-2 col-form-label' %>
+      <div class="input-group col-sm-10">
+        <%= form.check_box :proxy_input, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+  <!-- /.card-body -->
+
+  <div class="card-footer">
+    <%= form.submit(class: 'btn btn-primary') %>
+  </div>
+  <!-- /.card-footer -->
+<% end %>

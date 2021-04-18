@@ -1,0 +1,77 @@
+<% content_for :title do %>
+  予約詳細
+<% end %>
+
+<div class="row">
+<div class="col-12">
+  <div class="card">
+    <!-- form start -->
+    <form role="form">
+      <div class="card-body">
+        <div class="form-group row">
+          <label for="name" class="col-sm-2 col-form-label">Id</label>
+          <div class="input-group col-sm-10">
+            <input type="text" class="form-control" name="id" value="<%= @reservation.id %>" disabled>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="reserved_at" class="col-sm-2 col-form-label">Reserved at</label>
+          <div class="input-group col-sm-10">
+            <input type="text" class="form-control float-right" name="reserved_at" value="<%= l @reservation.reserved_at, format: :short %>" disabled>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="name" class="col-sm-2 col-form-label">Name</label>
+          <div class="input-group col-sm-10">
+            <input type="text" class="form-control" name="name" value="<%= @reservation.name %>" disabled>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="kana" class="col-sm-2 col-form-label">Kana</label>
+          <div class="input-group col-sm-10">
+          <input type="text" class="form-control" name="kana" value="<%= @reservation.kana %>" disabled>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="birthday_on" class="col-sm-2 col-form-label">Birthday on</label>
+          <div class="input-group col-sm-10">
+            <input type="text" class="form-control" name="birthday_on" value="<%= @reservation.birthday_on %>" disabled>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="phone_number" class="col-sm-2 col-form-label">Phone number</label>
+          <div class="input-group col-sm-10">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-phone"></i></span>
+            </div>
+            <input type="text" class="form-control" name="phone_number" value="<%= @reservation.phone_number %>" disabled>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="proxy_input" class="col-sm-2 col-form-label">Proxy input</label>
+          <div class="input-group col-sm-10">
+            <input type="text" class="form-control" name="proxy_input" value="<%= @reservation.proxy_input %>" disabled>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="imported_at" class="col-sm-2 col-form-label">Imported at</label>
+          <div class="input-group col-sm-10">
+            <input type="text" class="form-control" name="imported_at" value="<%= @reservation.imported_at %>" disabled>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="imported_user_id" class="col-sm-2 col-form-label">Imported by</label>
+          <div class="input-group col-sm-10">
+            <input type="text" class="form-control" name="imported_user_id" value="<%= @reservation.imported_user_id %>" disabled>
+          </div>
+        </div>
+      </div>
+      <!-- /.card-body -->
+
+      <div class="card-footer">
+        <%= link_to 'Edit', edit_reservation_path(@reservation), class: 'btn btn-primary' %>
+        <%= link_to 'Back', reservations_path, class: 'btn btn-default float-right' %>
+      </div>
+    </form>
+  </div>
+</div>

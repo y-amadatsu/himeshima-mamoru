@@ -1,0 +1,66 @@
+<%= javascript_packs_with_chunks_tag 'reservations/index' %>
+
+<% content_for :title do %>
+    予約一覧
+<% end %>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <%= link_to 'New Reservation', new_reservation_path, class: 'btn btn-default' %> <%= link_to 'Export', reservations_path(format: :csv), class: 'btn btn-default' %>
+      </div>
+      <div class="card-body">
+        <table id="table" class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Reserved</th>
+              <th>Name</th>
+              <th>Kana</th>
+              <th>Birthday on</th>
+              <th>Phone number</th>
+              <th>Proxy input</th>
+              <th>Created at</th>
+              <th>Updated at</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @reservations.each do |reservation| %>
+              <tr>
+                <td><%= reservation.id %></td>
+                <td><%= l reservation.reserved_at, format: :short %></td>
+                <td><%= reservation.name %></td>
+                <td><%= reservation.kana %></td>
+                <td><%= l reservation.birthday_on %><br><%= reservation.birthday_on.strftime("%Jy") %>年/満<%= reservation.age %>歳</td>
+                <td><%= reservation.phone_number %></td>
+                <td>
+                  <% if reservation.proxy_input %><i class="fas fa-check-square"></i><% end %>
+                  <p style='visibility: hidden; display: none;'><%= reservation.proxy_input %></p>
+                </td>
+                <td><%= l reservation.created_at %></td>
+                <td><%= l reservation.updated_at %></td>
+                <td>
+                  <div class='row'>
+                    <div class="col-12 mb-1">
+                      <%= link_to 'Show', reservation, class: 'btn btn-block btn-outline-primary btn-sm' %>
+                    </div>
+                    <div class="col-12 mb-2">
+                      <%= link_to 'Edit', edit_reservation_path(reservation), class: 'btn btn-block btn-outline-secondary btn-sm' %>
+                    </div>
+                    <div class="col-12">
+                      <%= link_to 'Destroy', reservation, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-block btn-outline-danger btn-sm' %>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+ </div>
+
+

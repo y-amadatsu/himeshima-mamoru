@@ -1,0 +1,47 @@
+<% content_for :title do %>
+    アカウント一覧
+<% end %>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <%= link_to 'New User', new_user_path, class: 'btn btn-default' %>
+      </div>
+      <div class="card-body">
+        <table id="table" class="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>name</th>
+              <th>email</th>
+              <th ></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+            <tr>
+              <td><%= user.name %></td>
+              <td><%= user.email %></td>
+              <td>
+                <div class='row'>
+                  <div class="col-3">
+                    <%= link_to 'Show', user, class: 'btn btn-block btn-outline-primary btn-sm' %>
+                  </div>
+                  <div class="col-3">
+                    <%= link_to 'Edit', edit_user_path(user), class: 'btn btn-block btn-outline-secondary btn-sm' %>
+                  </div>
+                  <div class="col-3">
+                    <%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-block btn-outline-danger btn-sm' %>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= javascript_packs_with_chunks_tag 'users/index' %>
